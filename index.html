@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8 недель богатства — Татьяна Волкова | Эфир 23 мая</title>
+
+  <!-- Uni Sans Trial (self-hosted) -->
+  <style>
+    @font-face {
+      font-family: 'Uni Sans';
+      src: url('Uni Sans Heavy.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Uni Sans';
+      src: url('Uni Sans Heavy Italic.otf') format('opentype');
+      font-weight: 700;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Uni Sans';
+      src: url('Uni Sans Thin.otf') format('opentype');
+      font-weight: 100;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Uni Sans';
+      src: url('Uni Sans Thin Italic.otf') format('opentype');
+      font-weight: 100;
+      font-style: italic;
+      font-display: swap;
+    }
+  </style>
+
+  <!-- Manrope (body) + Cormorant Garamond (section headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:   #88220E;
+      --teal:  #3A5560;
+      --cream: #FFE2AC;
+      --black: #000000;
+
+      --f-head:  'Uni Sans', sans-serif;
+      --f-body:  'Manrope', sans-serif;
+      --f-serif: 'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--f-body); background: #fff; color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    /* ─── TYPOGRAPHY ───────────────────────────── */
+    .h-display {
+      font-family: var(--f-head);
+      font-weight: 700;
+      line-height: 1.05;
+    }
+    /* Золотой градиент — для заголовка hero на тёмном фоне */
+    .h-gradient {
+      background: linear-gradient(0.306turn, #FFE2AC 0%, #FFF1D8 48%, #FFE2AC 98%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Заголовки секций — Thin, лёгкие, с хорошим трекингом */
+    .sec-title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(44px, 5.5vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--black);
+    }
+    /* Жирный акцент внутри заголовка секции */
+    .sec-title strong {
+      font-weight: 700;
+    }
+
+    /* ─── LAYOUT ───────────────────────────────── */
+    .section { padding: 80px 24px; }
+    .inner   { max-width: 1100px; margin: 0 auto; }
+    .inner-sm{ max-width: 720px;  margin: 0 auto; }
+    .divider { border-top: 1px solid #EBEBEB; }
+
+    /* ─── HERO ─────────────────────────────────── */
+    .hero {
+      background: linear-gradient(140deg, #180604 0%, #3d0f07 35%, #88220E 68%, #2e0b05 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* chart grid decoration */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+    }
+
+    /* ─── BUTTONS ──────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--f-body);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 954px;
+      padding: 16px 32px;
+      transition: opacity 0.18s, transform 0.12s;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* Кремовая — на тёмном фоне */
+    .btn-primary {
+      background: var(--cream);
+      color: var(--black);
+    }
+    /* Тёмная — на светлом фоне */
+    .btn-dark {
+      background: var(--teal);
+      color: #fff;
+    }
+    .btn-fp::before { content: ''; }
+
+    /* ─── TIMER ────────────────────────────────── */
+    .timer {
+      background: var(--teal);
+      border-radius: 14px;
+      padding: 18px 36px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .t-unit { text-align: center; min-width: 52px; }
+    .t-num  { font-family: var(--f-head); font-size: 40px; font-weight: 700; color: #fff; line-height: 1; }
+    .t-lbl  { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; font-family: var(--f-body); }
+    .t-sep  { font-family: var(--f-head); font-size: 36px; font-weight: 700; color: rgba(255,255,255,0.4); padding-bottom: 20px; }
+
+    /* ─── SHIELD BADGE ─────────────────────────── */
+    .shield {
+      width: 52px; height: 56px;
+      border-radius: 8px 8px 50% 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      flex-shrink: 0; color: #fff;
+    }
+    .shield .mark { font-size: 9px; opacity: 0.6; }
+    .shield .num  { font-family: var(--f-head); font-size: 16px; font-weight: 700; line-height: 1; }
+
+    /* ─── CARDS ────────────────────────────────── */
+    .card   { background: #F4F3F1; border-radius: 24px; padding: 28px; }
+    .s-card { border: 1px solid #d2d4d8; border-radius: 20px; padding: 20px 22px; background: #fff; }
+    .m-logo { border: 1px solid #d2d4d8; border-radius: 16px; padding: 20px 28px; display: flex; align-items: center; justify-content: center; min-height: 96px; }
+
+    /* ─── ICON BOX (section 3) ─────────────────── */
+    .ico-box {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+    }
+
+    /* ─── CIRCLE ICON (section 4) ──────────────── */
+    .cir-ico {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
+    /* ─── QUOTE BUBBLE ─────────────────────────── */
+    .q-bubble {
+      background: var(--teal);
+      color: #fff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      font-family: var(--f-body);
+      font-size: 14px;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ─── STAR ACCENT ──────────────────────────── */
+    .star { color: #C8A84B; }
+
+    /* ─── PLACEHOLDER IMAGE ────────────────────── */
+    /* Remove these divs once you have real images */
+    .img-ph {
+      background: #E0DDD9;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      color: #999; font-size: 12px; text-align: center; padding: 12px;
+      font-family: var(--f-body);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 1 — HERO
+═══════════════════════════════════════════════ -->
+<section class="hero" style="padding-bottom: 160px;">
+  <div class="inner" style="
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+    padding-bottom: 80px;
+  ">
+
+    <!-- LEFT: text block -->
+    <div style="flex: 1; max-width: 560px; position: relative; z-index: 2;">
+
+      <!-- Event badge -->
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:28px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:var(--cream);"></div>
+        <span style="
+          color: rgba(255,255,255,0.72);
+          font-family: var(--f-body);
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        ">ОНЛАЙН &nbsp;•&nbsp; 23 мая в 12:00 МСК</span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="h-display h-gradient" style="
+        font-size: clamp(52px, 8.5vw, 100px);
+        letter-spacing: -0.01em;
+        margin-bottom: 28px;
+      ">
+        8&nbsp;НЕДЕЛЬ<br>БОГАТСТВА
+      </h1>
+
+      <!-- Subtitle -->
+      <p style="
+        font-size: 18px;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.65;
+        max-width: 460px;
+        margin-bottom: 44px;
+      ">
+        Как перестать ждать больших денег, выйти из ловушки «начну потом»
+        и начать создавать капитал — даже со 100 рублей
+      </p>
+
+      <!-- CTA row -->
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-bottom:28px;">
+        <a href="#register" class="btn btn-primary btn-fp">
+          Забронировать место на эфир
+        </a>
+        <span style="
+          color: rgba(255,255,255,0.4);
+          font-size: 13px;
+          font-style: italic;
+          max-width: 170px;
+          line-height: 1.5;
+        ">
+          Количество мест ограничено. Регистрация — 30 секунд.
+        </span>
+      </div>
+
+      <!-- Timer under CTA -->
+      <div class="timer" style="display:inline-flex;">
+        <div class="t-unit"><div class="t-num" id="h-d">00</div><div class="t-lbl">дней</div></div>
+        <div class="t-sep">:</div>
+        <div class="t-unit"><div class="t-num" id="h-h">00</div><div class="t-lbl">часов</div></div>
+        <div class="t-sep">:</div>
+        <div class="t-unit"><div class="t-num" id="h-m">00</div><div class="t-lbl">минут</div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Tatyana photo -->
+    <div style="position:absolute; right:0; bottom:0; width:44%; height:100%; z-index:1; display:flex; align-items:flex-end;">
+      <img src="images/tatyana-hero.png" style="width:100%;height:100%;object-fit:contain;object-position:bottom center;">
+
+      <!-- Floating name tag -->
+      <div style="
+        position: absolute; bottom: 28px; left: 20px;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 954px;
+        padding: 10px 20px;
+        display: flex; align-items: center; gap: 10px;
+      ">
+        <span class="star" style="font-size:16px;">★</span>
+        <div>
+          <div style="font-family:var(--f-head);font-weight:700;font-size:14px;color:#fff;">Татьяна Волкова</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);">эксперт по личному капиталу</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /min-height wrapper -->
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     БОНУС-БЛОК — белый фон, сразу после hero
+═══════════════════════════════════════════════ -->
+<section style="
+  position: relative;
+  z-index: 2;
+  margin-top: -140px;
+  background: linear-gradient(to bottom, transparent 140px, #fff 140px);
+  padding: 0 24px 60px;
+">
+  <div style="max-width:700px; margin:0 auto;">
+    <div style="
+      background: linear-gradient(135deg, #3A5560 0%, #4E6E6E 100%);
+      border-radius: 22px;
+      padding: 36px 44px;
+      display: flex; align-items: center; gap: 32px;
+    ">
+      <div style="flex:1;">
+        <p style="color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:8px;font-family:var(--f-body);">
+          Сразу после регистрации вы получите PDF-гид
+        </p>
+        <p style="font-family:var(--f-head);font-weight:700;font-size:19px;color:#fff;line-height:1.3;margin-bottom:24px;">
+          «3 инструмента для сохранения и роста капитала»
+        </p>
+        <a href="#register" class="btn btn-primary btn-fp" style="font-size:12px;padding:14px 28px;">
+          Записаться
+        </a>
+      </div>
+      <!-- ★ REPLACE with: <img src="images/book-bonus.png" style="width:110px;flex-shrink:0;"> -->
+      <div class="img-ph" style="width:110px;height:145px;flex-shrink:0;border-radius:10px;">
+        Обложка<br>книги
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 2 — ПРОБЛЕМА
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+
+    <h2 class="sec-title" style="text-align:center;font-style:italic;margin-bottom:52px;">
+      Узнаёте себя?
+    </h2>
+
+    <!-- Row 1: 3 cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+
+      <div style="background:#fff;border:1px solid #d2d4d8;border-radius:24px;padding:28px 28px 32px;">
+        <div class="shield" style="background:var(--teal);margin-bottom:20px;">
+          <span class="mark">✓</span><span class="num">01</span>
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#222;">Доход вроде есть — но к концу месяца ничего не остаётся</p>
+      </div>
+
+      <div style="background:#fff;border:1px solid #d2d4d8;border-radius:24px;padding:28px 28px 32px;">
+        <div class="shield" style="background:var(--red);margin-bottom:20px;">
+          <span class="mark">✓</span><span class="num">02</span>
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#222;">Кажется, что с вашими суммами копить и инвестировать бессмысленно</p>
+      </div>
+
+      <div style="background:#fff;border:1px solid #d2d4d8;border-radius:24px;padding:28px 28px 32px;">
+        <div class="shield" style="background:var(--teal);margin-bottom:20px;">
+          <span class="mark">✓</span><span class="num">03</span>
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#222;">Есть кредиты, ипотека, обязательные платежи — и непонятно, когда вообще начинать</p>
+      </div>
+
+    </div>
+
+    <!-- Row 2: cards 04, 05 + quote -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch;">
+
+      <div style="background:#fff;border:1px solid #d2d4d8;border-radius:24px;padding:28px 28px 32px;">
+        <div class="shield" style="background:var(--red);margin-bottom:20px;">
+          <span class="mark">✓</span><span class="num">04</span>
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#222;">Говорите себе «вот подниму доход — тогда и начну» — и так уже не первый год</p>
+      </div>
+
+      <div style="background:#fff;border:1px solid #d2d4d8;border-radius:24px;padding:28px 28px 32px;">
+        <div class="shield" style="background:var(--teal);margin-bottom:20px;">
+          <span class="mark">✓</span><span class="num">05</span>
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#222;">Слово «капитал» звучит так, будто это вообще не про вашу жизнь</p>
+      </div>
+
+      <!-- Цитата Татьяны — без фона, снизу справа -->
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;padding:0 8px;">
+        <p style="font-style:italic;font-size:15px;line-height:1.7;color:#444;text-align:left;">
+          «Богатство начинается не с суммы. Оно начинается с привычки. А привычку можно запустить за 8 недель — с любого дохода»
+        </p>
+        <img src="images/tatyana-avatar.jpg"
+             style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center;align-self:flex-end;">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 3 — ЧТО БУДЕТ НА ЭФИРЕ
+═══════════════════════════════════════════════ -->
+<section class="section divider">
+  <div class="inner">
+
+    <p style="text-align:center;font-size:12px;color:#999;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;font-family:var(--f-body);">
+      На эфире
+    </p>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:52px;">
+      <em style="font-style:italic;">Разберём</em> по шагам:
+    </h2>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+
+      <div class="card" style="display:flex;gap:24px;align-items:flex-start;">
+        <div class="ico-box" style="background:var(--teal);">⚙️</div>
+        <div>
+          <h3 style="font-family:var(--f-body);font-weight:600;font-size:16px;line-height:1.4;margin-bottom:10px;">
+            Почему большая часть людей не создают капитал — и уверены, что у них «особая ситуация»
+          </h3>
+          <p style="font-size:14px;color:#555;line-height:1.6;">
+            Три системных ловушки, в которые попадают все — от тех, кто зарабатывает 50 тысяч, до тех, у кого 500 тысяч
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;gap:24px;align-items:flex-start;">
+        <div class="ico-box" style="background:var(--red);">🪙</div>
+        <div>
+          <h3 style="font-family:var(--f-body);font-weight:600;font-size:16px;line-height:1.4;margin-bottom:10px;">
+            Как 100 рублей в день превращаются в реальные деньги — с конкретными расчётами
+          </h3>
+          <p style="font-size:14px;color:#555;line-height:1.6;">
+            Арифметика, которая меняет отношение к «мелочи» навсегда
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;gap:24px;align-items:flex-start;">
+        <div class="ico-box" style="background:var(--red);">🎯</div>
+        <div>
+          <h3 style="font-family:var(--f-body);font-weight:600;font-size:16px;line-height:1.4;margin-bottom:10px;">
+            Что делать, если есть кредиты, ипотека и «дышать нечем»
+          </h3>
+          <p style="font-size:14px;color:#555;line-height:1.6;">
+            Закрывать долги или параллельно начинать откладывать — и почему ответ не тот, который вы ждёте
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;gap:24px;align-items:flex-start;">
+        <div class="ico-box" style="background:var(--teal);">🎮</div>
+        <div>
+          <h3 style="font-family:var(--f-body);font-weight:600;font-size:16px;line-height:1.4;margin-bottom:10px;">
+            Игровые механики накоплений, которые работают даже с детьми
+          </h3>
+          <p style="font-size:14px;color:#555;line-height:1.6;">
+            Простые способы, которые запускают привычку — без насилия над собой и бюджетом
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 4 — ДЛЯ КОГО
+═══════════════════════════════════════════════ -->
+<section class="section divider">
+  <div class="inner">
+
+    <h2 class="sec-title" style="text-align:center;font-style:italic;margin-bottom:52px;">
+      Приходите, если:
+    </h2>
+
+    <!-- Row 1: 3 -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+
+      <div class="card">
+        <div class="cir-ico" style="background:var(--red);">💼</div>
+        <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;">У вас наёмная работа</h3>
+        <p style="font-size:14px;color:#555;line-height:1.6;">— и кажется, что капитал строят только предприниматели</p>
+      </div>
+
+      <div class="card">
+        <div class="cir-ico" style="background:var(--teal);">🔍</div>
+        <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;">Вы уже пробовали разобраться в финансах</h3>
+        <p style="font-size:14px;color:#555;line-height:1.6;">— но «как-то далеко дело не пошло»</p>
+      </div>
+
+      <div class="card">
+        <div class="cir-ico" style="background:var(--red);">💰</div>
+        <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;">Хотите пассивный доход</h3>
+        <p style="font-size:14px;color:#555;line-height:1.6;">— но не понимаете, с какой стороны подойти</p>
+      </div>
+
+    </div>
+
+    <!-- Row 2: 2 centered -->
+    <div style="display:flex;gap:16px;justify-content:center;">
+
+      <div class="card" style="flex:0 0 calc(33.33% - 5px);">
+        <div class="cir-ico" style="background:var(--teal);">⏰</div>
+        <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;">Чувствуете, что время уходит</h3>
+        <p style="font-size:14px;color:#555;line-height:1.6;">— а денежная ситуация не меняется</p>
+      </div>
+
+      <div class="card" style="flex:0 0 calc(33.33% - 5px);">
+        <div class="cir-ico" style="background:var(--red);">😟</div>
+        <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;">Боитесь ошибиться</h3>
+        <p style="font-size:14px;color:#555;line-height:1.6;">— и поэтому не начинаете ничего</p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:48px;">
+      <a href="#register" class="btn btn-primary btn-fp" style="background:var(--red);color:#fff;">
+        Зарегистрироваться на эфир
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 5 — СПИКЕР
+═══════════════════════════════════════════════ -->
+<section class="section divider">
+  <div class="inner">
+
+    <!-- Верхняя строка: имя слева, цитата справа -->
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;margin-bottom:32px;">
+      <div>
+        <p style="font-family:var(--f-body);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin:0 0 14px;">Эксперт по созданию личного капитала</p>
+        <h2 style="font-family:var(--f-serif);font-weight:300;font-size:clamp(42px,5.5vw,58px);line-height:1.05;margin:0;white-space:nowrap;">Татьяна Волкова</h2>
+      </div>
+      <!-- Цитата — компактная, строго над колонкой с фото -->
+      <div class="q-bubble" style="font-size:13px;line-height:1.55;">
+        «Деньги — это не цель, а инструмент. И с ним можно жить увереннее, спокойнее и свободнее. Моя задача — показать, как именно»
+      </div>
+    </div>
+
+    <!-- Основная сетка: карточки слева, фото справа -->
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;">
+
+      <!-- Left: credential cards -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;"><strong>Более 12 лет</strong> занимается финансовым образованием населения</span>
+        </div>
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;">Эксперт по созданию личного капитала, <strong>более 70 000 выпускников</strong></span>
+        </div>
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;">Серийный предприниматель, инвестор в ценные бумаги, недвижимость и криптовалюту</span>
+        </div>
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;"><strong>Эксперт федеральных СМИ</strong> — Первый канал, Москва24, РБК, «Известия», «Коммерсантъ», Газета.Ru, Lenta.Ru, Российская газета, Аргументы и факты, РИА Новости и др.</span>
+        </div>
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;"><strong>Более 20 источников</strong> пассивного дохода</span>
+        </div>
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;">За 2025 год вышло <strong>более 2 500 материалов</strong> в СМИ с комментариями Татьяны Волковой</span>
+        </div>
+
+        <div class="s-card">
+          <span class="star" style="margin-right:8px;">★</span>
+          <span style="font-size:14px;line-height:1.55;">Автор мгновенного бестселлера «5 капиталов»</span>
+        </div>
+
+      </div>
+
+      <!-- Right: photo + mission -->
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <img src="images/tatyana-speaker.jpg"
+             style="width:300px;border-radius:16px;object-fit:cover;object-position:top center;margin-bottom:14px;">
+        <p style="font-size:13px;color:#555;font-style:italic;line-height:1.55;text-align:center;max-width:260px;">
+          <strong style="font-style:normal;">Миссия:</strong> Сделать сложные финансовые инструменты доступными и понятными для каждого
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Media logos -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px;">
+
+      <div class="m-logo">
+        <img src="images/logo-perviy.png" alt="Первый канал" style="height:66px;width:auto;">
+      </div>
+
+      <div class="m-logo">
+        <img src="images/logo-moskva24.png" alt="Москва 24" style="height:84px;width:auto;">
+      </div>
+
+      <div class="m-logo">
+        <img src="images/logo-rbc.png" alt="РБК" style="height:36px;width:auto;">
+      </div>
+
+      <div class="m-logo">
+        <img src="images/logo-ria.png" alt="РИА Новости" style="height:84px;width:auto;">
+      </div>
+
+      <div class="m-logo">
+        <img src="images/logo-kommersant.png" alt="Коммерсантъ" style="height:116px;width:auto;">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 6 — БОНУС
+═══════════════════════════════════════════════ -->
+<section style="background:#F2F1EF;padding:60px 24px;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div style="
+      background: linear-gradient(135deg, #3A5560 0%, #243C47 55%, #3A5560 100%);
+      border-radius: 24px;
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+    ">
+      <div style="flex:1;">
+        <p style="color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px;font-family:var(--f-body);">
+          Каждый участник эфира
+        </p>
+        <h2 class="h-display" style="font-size:clamp(28px,4vw,40px);color:#fff;text-transform:uppercase;margin-bottom:24px;">
+          Получит в подарок:
+        </h2>
+        <h3 style="font-family:var(--f-head);font-weight:700;font-size:16px;color:#fff;margin-bottom:12px;">
+          Гайд «Код вашей финансовой матрицы»
+        </h3>
+        <p style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:28px;max-width:440px;">
+          Ваше окружение уже сегодня определяет ваш завтрашний доход. Получите карту, которая за 15 минут покажет, кто на самом деле влияет на ваши деньги и состояние
+        </p>
+        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+          <a href="#register" class="btn btn-primary btn-fp" style="font-size:12px;padding:14px 32px;">
+            Зарегистрироваться
+          </a>
+          <span style="color:rgba(255,255,255,0.4);font-size:13px;font-style:italic;">
+            Бесплатно&nbsp;·&nbsp;Отправим сразу после регистрации
+          </span>
+        </div>
+      </div>
+      <!-- ★ REPLACE with: <img src="images/book-guide.png" style="width:140px;flex-shrink:0;"> -->
+      <div class="img-ph" style="width:140px;height:180px;flex-shrink:0;border-radius:10px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.35);">
+        Обложка<br>гайда
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     СЕКЦИЯ 7 — ФИНАЛЬНЫЙ CTA
+═══════════════════════════════════════════════ -->
+<section id="register" class="section" style="text-align:center;">
+  <div class="inner-sm">
+
+    <!-- Timer -->
+    <div style="display:flex;justify-content:center;margin-bottom:36px;">
+      <div class="timer">
+        <div class="t-unit"><div class="t-num" id="c-d">00</div><div class="t-lbl">дней</div></div>
+        <div class="t-sep">:</div>
+        <div class="t-unit"><div class="t-num" id="c-h">00</div><div class="t-lbl">часов</div></div>
+        <div class="t-sep">:</div>
+        <div class="t-unit"><div class="t-num" id="c-m">00</div><div class="t-lbl">минут</div></div>
+      </div>
+    </div>
+
+    <p style="font-family:var(--f-head);font-size:20px;font-weight:700;color:var(--red);margin-bottom:12px;">
+      23 мая в 12:00 МСК
+    </p>
+    <p style="font-size:20px;color:var(--black);margin-bottom:20px;">
+      — эфир, который может изменить отношение к деньгам
+    </p>
+
+    <p style="font-size:16px;color:#555;line-height:1.8;margin-bottom:48px;">
+      Вы увидите, что капитал можно строить с любой суммы и из любой точки.<br>
+      И увидете конкретные шаги — не «когда-нибудь», а на эту неделю.
+    </p>
+
+    <!-- CTA card -->
+    <div style="
+      background: #F2F1EF;
+      border-radius: 20px;
+      padding: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    ">
+      <a href="#" class="btn btn-dark btn-fp" style="padding:20px 48px;font-size:14px;gap:12px;">
+        <span style="line-height:1.25;text-align:left;">Занять место<br>на эфире</span>
+      </a>
+      <p style="font-size:13px;color:#999;font-style:italic;line-height:1.55;max-width:180px;text-align:left;">
+        Количество мест ограничено. Регистрация — 30 секунд.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     JS — TIMERS
+═══════════════════════════════════════════════ -->
+<script>
+  // Hero: до 23 мая 10:00 МСК = 07:00 UTC
+  const T_HERO = new Date('2026-05-23T07:00:00Z');
+  // CTA: до 23 мая 12:00 МСК = 09:00 UTC
+  const T_CTA  = new Date('2026-05-23T09:00:00Z');
+
+  function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+
+  function remaining(target) {
+    const ms = target - Date.now();
+    if (ms <= 0) return [0, 0, 0];
+    return [
+      Math.floor(ms / 864e5),
+      Math.floor((ms % 864e5) / 36e5),
+      Math.floor((ms % 36e5) / 6e4)
+    ];
+  }
+
+  function tick() {
+    const [d1, h1, m1] = remaining(T_HERO);
+    document.getElementById('h-d').textContent = pad(d1);
+    document.getElementById('h-h').textContent = pad(h1);
+    document.getElementById('h-m').textContent = pad(m1);
+
+    const [d2, h2, m2] = remaining(T_CTA);
+    document.getElementById('c-d').textContent = pad(d2);
+    document.getElementById('c-h').textContent = pad(h2);
+    document.getElementById('c-m').textContent = pad(m2);
+  }
+
+  tick();
+  setInterval(tick, 30000);
+</script>
+
+</body>
+</html>
