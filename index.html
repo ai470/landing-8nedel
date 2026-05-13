@@ -57,7 +57,7 @@
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: var(--f-body); background: #F7F5F2; color: var(--black); -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--f-body); background: #F7F5F2; color: var(--black); -webkit-font-smoothing: antialiased; overflow-y: auto !important; }
 
     /* ─── TYPOGRAPHY ───────────────────────────── */
     .h-display {
@@ -65,14 +65,12 @@
       font-weight: 700;
       line-height: 1.05;
     }
-    /* Золотой градиент — для заголовка hero на тёмном фоне */
     .h-gradient {
       background: linear-gradient(0.306turn, #FFE2AC 0%, #FFF1D8 48%, #FFE2AC 98%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    /* Заголовки секций — Thin, лёгкие, с хорошим трекингом */
     .sec-title {
       font-family: var(--f-head);
       font-weight: 100;
@@ -81,10 +79,7 @@
       letter-spacing: -0.01em;
       color: var(--black);
     }
-    /* Жирный акцент внутри заголовка секции */
-    .sec-title strong {
-      font-weight: 700;
-    }
+    .sec-title strong { font-weight: 700; }
 
     /* ─── LAYOUT ───────────────────────────────── */
     .section { padding: 80px 24px; }
@@ -98,7 +93,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* chart grid decoration */
     .hero::before {
       content: '';
       position: absolute; inset: 0;
@@ -126,14 +120,11 @@
       transition: opacity 0.18s, transform 0.12s;
     }
     .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    /* Золотая — основная */
     .btn-primary {
       background: linear-gradient(135deg, #C8900A, #FFE2AC, #D4A017);
       color: #1a1a1a;
       box-shadow: 0 4px 24px rgba(212,160,23,0.35);
     }
-    /* Тёмная — на светлом фоне */
     .btn-dark {
       background: linear-gradient(135deg, #C8900A, #FFE2AC, #D4A017);
       color: #1a1a1a;
@@ -166,7 +157,7 @@
     .shield .num  { font-family: var(--f-head); font-size: 16px; font-weight: 700; line-height: 1; }
 
     /* ─── CARDS ────────────────────────────────── */
-    .card   { background: #F4F3F1; border-radius: 24px; padding: 28px; }
+    .card   { background: #ECEAE7; border-radius: 24px; padding: 28px; }
     .s-card { border-radius: 20px; padding: 20px 22px; background: #fff; }
     .m-logo { background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 14px 20px; display: flex; align-items: center; justify-content: center; min-height: 70px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 
@@ -188,10 +179,16 @@
     /* ─── CIRCLE ICON (section 4) ──────────────── */
     .cir-ico {
       width: 46px; height: 46px;
-      border-radius: 50%;
+      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 16px;
       font-size: 20px;
+      overflow: hidden;
+    }
+    .cir-ico img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.35);
     }
 
     /* ─── QUOTE BUBBLE ─────────────────────────── */
@@ -210,40 +207,160 @@
     .star { color: #C8A84B; }
 
     /* ─── CARD STACK (section 2) ──────────────── */
-    .card-stack {
-      position: relative;
-    }
+    .card-stack { position: relative; }
     .card-stack::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       border-radius: 20px;
-      background: #E4E1DD;
+      background: #C4BFBA;
       transform: rotate(-3deg) translateY(7px);
       z-index: 0;
     }
     .card-stack::after {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       border-radius: 20px;
-      background: #EDECEA;
+      background: #D4CFCB;
       transform: rotate(1.5deg) translateY(5px);
       z-index: 0;
     }
-    .card-stack > * {
-      position: relative;
-      z-index: 1;
-    }
+    .card-stack > * { position: relative; z-index: 1; }
 
     /* ─── PLACEHOLDER IMAGE ────────────────────── */
-    /* Remove these divs once you have real images */
     .img-ph {
       background: #E0DDD9;
       border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
       color: #999; font-size: 12px; text-align: center; padding: 12px;
       font-family: var(--f-body);
+    }
+
+    /* ═══════════════════════════════════════════════
+       MOBILE — max-width: 768px
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* Base */
+      .section { padding: 48px 16px; }
+
+      /* Hero */
+      .hero-inner {
+        min-height: 100svh !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding-top: 48px !important;
+        padding-bottom: 200px !important;
+        position: relative !important;
+      }
+      .hero-text {
+        max-width: 100% !important;
+        width: 100% !important;
+        z-index: 2 !important;
+      }
+      .hero-photo {
+        width: 100% !important;
+        height: 260px !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+      .hero-photo img {
+        border-radius: 0 !important;
+        object-position: top center !important;
+      }
+      .hero-photo > div { display: none !important; } /* hide name tag on mobile */
+
+      /* Hero H1 */
+      .h-display.h-gradient { font-size: clamp(44px, 12vw, 72px) !important; }
+
+      /* Hero subtitle */
+      .hero-text p[style*="font-size: 18px"] { font-size: 15px !important; margin-bottom: 28px !important; }
+
+      /* Hero timer */
+      .timer {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+      .t-num { font-size: 28px !important; }
+      .t-sep { font-size: 24px !important; }
+
+      /* Hero CTA button */
+      .hero-text .btn { width: 100% !important; justify-content: center !important; }
+
+      /* Sec-title */
+      .sec-title { font-size: clamp(32px, 8vw, 48px) !important; }
+
+      /* Bonus top card */
+      .bonus-flex {
+        flex-direction: column !important;
+        padding: 28px 24px !important;
+        gap: 24px !important;
+      }
+      .bonus-flex .img-ph { width: 100% !important; height: 140px !important; }
+
+      /* Section 2 — grid 3 → 1 col */
+      .grid-3 { grid-template-columns: 1fr !important; }
+
+      /* Section 2 — flex pair → column */
+      .flex-pair {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .flex-pair .card-stack {
+        flex: none !important;
+        width: 100% !important;
+      }
+
+      /* Section 3 — grid 2 → 1 col */
+      .grid-2 { grid-template-columns: 1fr !important; }
+
+      /* Section 4 — grid 3 → 1 col, flex pair → column */
+      .grid-4-3 { grid-template-columns: 1fr !important; }
+      .flex-4-2 {
+        flex-direction: column !important;
+      }
+      .flex-4-2 > div { flex: none !important; width: 100% !important; }
+
+      /* Section 5 — speaker */
+      .speaker-head {
+        grid-template-columns: 1fr !important;
+      }
+      .speaker-head h2 { white-space: normal !important; font-size: clamp(36px, 10vw, 52px) !important; }
+      .speaker-main {
+        grid-template-columns: 1fr !important;
+      }
+      .speaker-cards { grid-template-columns: 1fr !important; }
+      .speaker-photo { order: -1 !important; align-items: flex-start !important; }
+      .speaker-photo img { width: 100% !important; max-width: 280px !important; }
+
+      /* Section 5 — media logos 5→3 col */
+      .media-logos { grid-template-columns: repeat(3, 1fr) !important; }
+
+      /* Section 6 — bonus card */
+      .sec6-flex {
+        flex-direction: column !important;
+        padding: 32px 24px !important;
+        gap: 24px !important;
+      }
+      .sec6-flex .img-ph { width: 100% !important; height: 160px !important; }
+
+      /* CTA section */
+      .cta-timer { min-width: 0 !important; width: 100% !important; }
+      .sec-title[style*="color:#fff"] { font-size: clamp(32px, 9vw, 52px) !important; }
+      .btn[style*="padding:24px 72px"] {
+        padding: 20px 32px !important;
+        font-size: 15px !important;
+        width: 100% !important;
+        justify-content: center !important;
+      }
+
+      /* Footer */
+      .footer-inner {
+        flex-direction: column !important;
+        gap: 24px !important;
+      }
+      .footer-inner > div:last-child { text-align: left !important; }
     }
   </style>
 </head>
@@ -253,7 +370,7 @@
      СЕКЦИЯ 1 — HERO
 ═══════════════════════════════════════════════ -->
 <section class="hero">
-  <div class="inner" style="
+  <div class="inner hero-inner" style="
     position: relative;
     min-height: 100svh;
     display: flex;
@@ -263,7 +380,7 @@
   ">
 
     <!-- LEFT: text block -->
-    <div style="flex: 1; max-width: 560px; position: relative; z-index: 2;">
+    <div class="hero-text" style="flex: 1; max-width: 560px; position: relative; z-index: 2;">
 
       <!-- Event badge -->
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:28px;">
@@ -320,24 +437,25 @@
     </div>
 
     <!-- RIGHT: Tatyana photo -->
-    <div style="position:absolute; right:0; bottom:0; width:44%; height:100%; z-index:1; display:flex; align-items:flex-end;">
+    <div class="hero-photo" style="position:absolute; right:0; bottom:0; width:44%; height:100%; z-index:1; display:flex; align-items:flex-end;">
       <img src="images/tatyana-hero.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:20px 20px 0 0;">
 
       <!-- Floating name tag -->
       <div style="
         position: absolute; bottom: 28px; left: 20px;
-        background: rgba(255,255,255,0.12);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(8,18,28,0.50);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.14);
         border-radius: 954px;
-        padding: 10px 20px;
-        display: flex; align-items: center; gap: 10px;
+        padding: 12px 22px;
+        display: flex; align-items: center; gap: 12px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.35);
       ">
         <span class="star" style="font-size:16px;">★</span>
         <div>
           <div style="font-family:var(--f-head);font-weight:700;font-size:14px;color:#fff;">Татьяна Волкова</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.6);">эксперт по личному капиталу</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.7);">эксперт по личному капиталу</div>
         </div>
       </div>
     </div>
@@ -352,7 +470,7 @@
 ═══════════════════════════════════════════════ -->
 <section style="background:#F7F5F2; padding:60px 24px; position:relative; z-index:2;">
   <div style="max-width:900px; margin:0 auto;">
-    <div style="
+    <div class="bonus-flex" style="
       background: linear-gradient(135deg, #3A5560 0%, #4E6E6E 100%);
       border-radius: 22px;
       padding: 40px 52px;
@@ -390,7 +508,7 @@
     </h2>
 
       <!-- Row 1: 3 карточки -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px;">
+      <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px;">
 
         <div class="card-stack">
           <div style="background:#fff;border-radius:20px;padding:24px 24px 28px;">
@@ -422,7 +540,7 @@
       </div>
 
       <!-- Row 2: 2 карточки по центру (пирамида) -->
-      <div style="display:flex;gap:20px;justify-content:center;margin-bottom:56px;">
+      <div class="flex-pair" style="display:flex;gap:20px;justify-content:center;margin-bottom:56px;">
 
         <div class="card-stack" style="flex:0 0 calc(33.33% - 7px);">
           <div style="background:#fff;border-radius:20px;padding:24px 24px 28px;">
@@ -473,7 +591,7 @@
       Разберём по шагам:
     </h2>
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+    <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
 
       <div class="card" style="display:flex;gap:24px;align-items:flex-start;">
         <div class="ico-box" style="overflow:hidden;"><img src="images/ico-pochemu.png" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -539,22 +657,22 @@
     </h2>
 
     <!-- Row 1: 3 -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+    <div class="grid-4-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
 
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:28px;">
-        <div class="cir-ico" style="background:var(--red);">💼</div>
+      <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:28px;box-shadow:inset 4px 0 0 var(--cream),inset 0 1px 0 rgba(255,255,255,0.08);">
+        <div class="cir-ico" style="background:var(--red);"><img src="images/ico-naem.png"></div>
         <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;color:#fff;">У вас наёмная работа</h3>
         <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;">— и кажется, что капитал строят только предприниматели</p>
       </div>
 
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:28px;">
-        <div class="cir-ico" style="background:var(--teal);">🔍</div>
+      <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:28px;box-shadow:inset 4px 0 0 var(--cream),inset 0 1px 0 rgba(255,255,255,0.08);">
+        <div class="cir-ico" style="background:var(--teal);"><img src="images/ico-probovaly.png"></div>
         <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;color:#fff;">Вы уже пробовали разобраться в финансах</h3>
         <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;">— но «как-то далеко дело не пошло»</p>
       </div>
 
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:28px;">
-        <div class="cir-ico" style="background:var(--red);">💰</div>
+      <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:28px;box-shadow:inset 4px 0 0 var(--cream),inset 0 1px 0 rgba(255,255,255,0.08);">
+        <div class="cir-ico" style="background:var(--red);"><img src="images/ico-passiv.png"></div>
         <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;color:#fff;">Хотите пассивный доход</h3>
         <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;">— но не понимаете, с какой стороны подойти</p>
       </div>
@@ -562,16 +680,16 @@
     </div>
 
     <!-- Row 2: 2 centered -->
-    <div style="display:flex;gap:16px;justify-content:center;">
+    <div class="flex-4-2" style="display:flex;gap:16px;justify-content:center;">
 
-      <div style="flex:0 0 calc(33.33% - 5px);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:28px;">
-        <div class="cir-ico" style="background:var(--teal);">⏰</div>
+      <div style="flex:0 0 calc(33.33% - 5px);background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:28px;box-shadow:inset 4px 0 0 var(--cream),inset 0 1px 0 rgba(255,255,255,0.08);">
+        <div class="cir-ico" style="background:var(--teal);"><img src="images/ico-vremya.png"></div>
         <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;color:#fff;">Чувствуете, что время уходит</h3>
         <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;">— а денежная ситуация не меняется</p>
       </div>
 
-      <div style="flex:0 0 calc(33.33% - 5px);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:28px;">
-        <div class="cir-ico" style="background:var(--red);">😟</div>
+      <div style="flex:0 0 calc(33.33% - 5px);background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:28px;box-shadow:inset 4px 0 0 var(--cream),inset 0 1px 0 rgba(255,255,255,0.08);">
+        <div class="cir-ico" style="background:var(--red);"><img src="images/ico-boites.png"></div>
         <h3 style="font-family:var(--f-body);font-weight:600;font-size:15px;margin-bottom:8px;color:#fff;">Боитесь ошибиться</h3>
         <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;">— и поэтому не начинаете ничего</p>
       </div>
@@ -595,22 +713,21 @@
   <div class="inner">
 
     <!-- Верхняя строка: имя слева, цитата справа -->
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;margin-bottom:32px;">
+    <div class="speaker-head" style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;margin-bottom:32px;">
       <div>
         <p style="font-family:var(--f-body);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin:0 0 14px;">Эксперт по созданию личного капитала</p>
         <h2 style="font-family:var(--f-serif);font-weight:300;font-size:clamp(42px,5.5vw,58px);line-height:1.05;margin:0;white-space:nowrap;">Татьяна Волкова</h2>
       </div>
-      <!-- Цитата — компактная, строго над колонкой с фото -->
       <div class="q-bubble" style="font-size:13px;line-height:1.55;">
         «Деньги — это не цель, а инструмент. И с ним можно жить увереннее, спокойнее и свободнее. Моя задача — показать, как именно»
       </div>
     </div>
 
     <!-- Основная сетка: карточки слева, фото справа -->
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;">
+    <div class="speaker-main" style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;">
 
       <!-- Left: credential cards -->
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      <div class="speaker-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
 
         <div class="s-card">
           <span class="star" style="margin-right:8px;">★</span>
@@ -651,7 +768,7 @@
       </div>
 
       <!-- Right: photo + mission -->
-      <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="speaker-photo" style="display:flex;flex-direction:column;align-items:center;">
         <img src="images/tatyana-speaker.jpg"
              style="width:300px;border-radius:16px;object-fit:cover;object-position:top center;margin-bottom:14px;">
         <p style="font-size:13px;color:#555;font-style:italic;line-height:1.55;text-align:center;max-width:260px;">
@@ -662,7 +779,7 @@
     </div>
 
     <!-- Media logos -->
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px;">
+    <div class="media-logos" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px;">
 
       <div class="m-logo">
         <img src="images/logo-perviy.png" alt="Первый канал" style="height:66px;width:auto;">
@@ -695,7 +812,7 @@
 ═══════════════════════════════════════════════ -->
 <section style="background:#F7F5F2;padding:60px 24px;">
   <div style="max-width:900px;margin:0 auto;">
-    <div style="
+    <div class="sec6-flex" style="
       background: linear-gradient(135deg, #3A5560 0%, #243C47 55%, #3A5560 100%);
       border-radius: 24px;
       padding: 48px 72px;
@@ -744,7 +861,7 @@
 
     <!-- Timer -->
     <div style="display:flex;justify-content:center;margin-bottom:36px;">
-      <div class="timer" style="min-width:340px;background:rgba(255,255,255,0.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);">
+      <div class="timer cta-timer" style="min-width:340px;background:rgba(255,255,255,0.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);">
         <div class="t-unit"><div class="t-num" id="c-d">00</div><div class="t-lbl">дней</div></div>
         <div class="t-sep">:</div>
         <div class="t-unit"><div class="t-num" id="c-h">00</div><div class="t-lbl">часов</div></div>
@@ -753,7 +870,7 @@
       </div>
     </div>
 
-    <p style="font-family:var(--f-head);font-size:18px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream);margin-bottom:20px;">
+    <p style="font-family:var(--f-head);font-size:26px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream);margin-bottom:20px;">
       23 мая в 12:00 МСК
     </p>
     <h2 class="sec-title" style="color:#fff;margin-bottom:16px;">
@@ -764,7 +881,7 @@
     </p>
 
     <!-- CTA -->
-    <a href="#" class="btn btn-primary btn-fp" style="padding:24px 72px;font-size:17px;letter-spacing:0.05em;font-weight:700;">
+    <a href="#" class="btn btn-primary btn-fp cta-btn" style="padding:24px 72px;font-size:17px;letter-spacing:0.05em;font-weight:700;">
       Забронировать место бесплатно
     </a>
     <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,0.3);">
@@ -779,9 +896,7 @@
      JS — TIMERS
 ═══════════════════════════════════════════════ -->
 <script>
-  // Hero: до 23 мая 10:00 МСК = 07:00 UTC
   const T_HERO = new Date('2026-05-23T07:00:00Z');
-  // CTA: до 23 мая 12:00 МСК = 09:00 UTC
   const T_CTA  = new Date('2026-05-23T09:00:00Z');
 
   function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
@@ -812,5 +927,42 @@
   setInterval(tick, 30000);
 </script>
 
+
+<!-- ═══════════════════════════════════════════════
+     ПОДВАЛ
+═══════════════════════════════════════════════ -->
+<footer style="background:#fff;border-top:1px solid #E8E8E8;padding:40px 24px 36px;">
+  <div class="footer-inner" style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+
+    <!-- Левая колонка: реквизиты + ссылки -->
+    <div>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;font-weight:700;line-height:1.8;margin:0;">ООО «Финтеллект»</p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0;">ИНН 7743478689</p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0;">ОГРН 1257700442174</p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#999;line-height:1.8;margin:0 0 20px;">г. Москва</p>
+
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <a href="https://my.tvaity.ru/pl/fileservice/user/file/download/h/42e4ed69d963af324024779957b9d008.pdf" target="_blank" style="font-family:var(--f-body);font-size:13px;color:#3a7bd5;text-decoration:none;">Согласие на получение рекламы</a>
+        <a href="https://my.tvaity.ru/pl/fileservice/user/file/download/h/18d2d9cfc90c4c1ef9bf2bcd52c05138.pdf" target="_blank" style="font-family:var(--f-body);font-size:13px;color:#3a7bd5;text-decoration:none;">Политика обработки персональных данных</a>
+        <a href="https://fintellect.site/agreement" target="_blank" style="font-family:var(--f-body);font-size:13px;color:#3a7bd5;text-decoration:none;">Лицензионное соглашение</a>
+      </div>
+    </div>
+
+    <!-- Правая колонка: контакты -->
+    <div style="text-align:right;">
+      <p style="font-family:var(--f-body);font-size:13px;color:#999;line-height:1.8;margin:0;">Номера службы заботы</p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0;">+7 969 999 53 77</p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0 0 20px;">+1 (205) 894 80-18</p>
+
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0;">Почта: <a href="mailto:office.tm.volkova@yandex.ru" style="color:#3a7bd5;text-decoration:none;">office.tm.volkova@yandex.ru</a></p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0;">ТГ: +79936374941</p>
+      <p style="font-family:var(--f-body);font-size:13px;color:#000;line-height:1.8;margin:0;">WA: +79936374941</p>
+    </div>
+
+  </div>
+</footer>
+
+
+<script id="da08ef5d24962eb6da0de01f031fcf6895454dfe" src="https://my.tvaity.ru/pl/lite/widget/script?id=1602513"></script>
 </body>
 </html>
